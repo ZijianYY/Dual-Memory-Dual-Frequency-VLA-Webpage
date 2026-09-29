@@ -1,0 +1,80 @@
+"use strict";
+// 图片上传到对应路径后，会自动替换占位区，无需修改 HTML。
+function initializeMedia(root = document) {
+  root.querySelectorAll("[data-image]:not([data-initialized])").forEach(slot => {
+    slot.dataset.initialized = "true";
+    const image = new Image();
+    image.alt = slot.dataset.alt || "D²-VLA research figure";
+    image.decoding = "async";
+    image.onload = () => { slot.append(image); slot.classList.add("has-media"); };
+    image.src = slot.dataset.image;
+  });
+  root.querySelectorAll("[data-video]:not([data-initialized])").forEach(slot => {
+    slot.dataset.initialized = "true";
+    const video = document.createElement("video");
+    video.controls = true;
+    video.playsInline = true;
+    video.preload = "metadata";
+    video.setAttribute("aria-label", slot.dataset.alt || "Robot demonstration");
+    video.hidden = true;
+    video.addEventListener("loadedmetadata", () => {
+      video.hidden = false;
+      slot.classList.add("has-media");
+    }, { once: true });
+    video.addEventListener("error", () => {
+      video.hidden = true;
+      slot.classList.remove("has-media");
+      const label = slot.querySelector(".placeholder-caption");
+      if (label && video.error && video.error.code === 3) label.textContent = "This video could not be played.";
+    });
+    video.src = slot.dataset.video;
+    slot.append(video);
+  });
+}
+initializeMedia();
+const config = window.SITE_CONFIG || {};
+function allowedUrl(value) {
+  if (typeof value !== "string" || !value.trim()) return null;
+  try { const url = new URL(value, location.href); return ["https:", "http:", "file:"].includes(url.protocol) ? value : null; } catch { return null; }
+}
+if (allowedUrl(config.paperUrl)) {
+  const link = document.getElementById("paper-link");
+  link.href = config.paperUrl;
+  link.textContent = "Paper ↗";
+}
+if (allowedUrl(config.projectUrl)) {
+  const link = document.getElementById("project-link");
+  link.href = config.projectUrl;
+  link.hidden = false;
+}
+
+document.querySelectorAll("[data-task-group]").forEach(button => {
+  button.addEventListener("click", () => {
+    const group = button.dataset.taskGroup;
+    document.querySelectorAll("[data-task-group]").forEach(item => item.setAttribute("aria-pressed", String(item === button)));
+    ["dynamic", "static"].forEach(name => {
+      const panel = document.getElementById(`${name}-tasks`);
+      panel.hidden = name !== group;
+      if (panel.hidden) panel.querySelectorAll("video").forEach(video => video.pause());
+    });
+  });
+});
+
+const copyButton = document.getElementById("copy-citation");
+copyButton?.addEventListener("click", async () => {
+  const source = document.getElementById("bibtex");
+  const status = document.getElementById("copy-status");
+  try {
+    if (!navigator.clipboard?.writeText) throw new Error("Clipboard unavailable");
+    await navigator.clipboard.writeText(source.textContent);
+    copyButton.textContent = "Copied";
+    status.textContent = "Citation copied to clipboard.";
+    setTimeout(() => { copyButton.textContent = "Copy BibTeX"; status.textContent = ""; }, 2500);
+  } catch {
+    const range = document.createRange();
+    range.selectNodeContents(source);
+    const selection = window.getSelection();
+    selection.removeAllRanges(); selection.addRange(range);
+    status.textContent = "Citation selected. Press Ctrl+C or ⌘C to copy.";
+  }
+});
