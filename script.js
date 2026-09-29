@@ -78,3 +78,23 @@ copyButton?.addEventListener("click", async () => {
     status.textContent = "Citation selected. Press Ctrl+C or ⌘C to copy.";
   }
 });
+
+// Task names and video pairs are configured on the four buttons in index.html.
+const heroTaskButtons = document.querySelectorAll("[data-hero-task]");
+heroTaskButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    if (button.getAttribute("aria-pressed") === "true") return;
+    heroTaskButtons.forEach(item => item.setAttribute("aria-pressed", String(item === button)));
+    const title = button.dataset.title;
+    document.getElementById("hero-task-title").textContent = title;
+    ["left", "right"].forEach((side, index) => {
+      const video = document.getElementById(`hero-video-${side}`);
+      const source = button.dataset[`${side}Video`];
+      video.pause();
+      video.src = source;
+      video.setAttribute("aria-label", `${title}, demonstration ${index + 1}`);
+      document.getElementById(`hero-download-${side}`).href = source;
+      video.load();
+    });
+  });
+});

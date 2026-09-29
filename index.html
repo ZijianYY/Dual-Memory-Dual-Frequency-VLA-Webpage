@@ -30,25 +30,38 @@
       </div>
       <p class="affiliations"><span><sup>1</sup> The University of Hong Kong</span><span><sup>2</sup> Southern University of Science and Technology</span></p>
       <p class="contributions"><sup>*</sup> Equal contribution <span>·</span> <sup>†</sup> Project lead <span>·</span> <sup>✉</sup> Corresponding author</p>
-      <!-- 首页真机视频：分别修改下面两个 video 的 src，即可替换左侧和右侧视频。 -->
-      <div class="video-grid hero-demos" aria-label="Real-world robot demonstrations">
-        <figure class="paper-figure">
-          <div class="media-slot video-slot">
-            <video controls playsinline preload="metadata" aria-label="Real-world demonstration 1" src="video/IMG_5290.MOV">
-              <a href="video/IMG_5290.MOV">Download demonstration 1</a>
-            </video>
+      <!-- 首页任务切换：修改每个按钮的 data-title 和显示文字可改任务名；
+           data-left-video / data-right-video 分别对应左、右视频。 -->
+      <section class="hero-showcase" aria-label="Real-world task demonstrations">
+        <div class="showcase-heading"><span class="showcase-kicker">REAL-WORLD DEMONSTRATIONS</span><span class="showcase-count">4 tasks · 8 videos</span></div>
+        <div class="task-switcher">
+        <button type="button" class="task-choice task-choice-1" data-hero-task="1" data-title="Match and Pick" data-left-video="video/IMG_5290.MOV" data-right-video="video/IMG_5296.MOV" aria-pressed="true" aria-controls="hero-task-stage">
+          <span class="task-choice-number">01</span><span class="task-choice-name">Match and Pick</span><span class="task-choice-detail">Two demonstrations <span aria-hidden="true">↗</span></span>
+        </button>
+        <button type="button" class="task-choice task-choice-2" data-hero-task="2" data-title="Sequential Pick" data-left-video="video/IMG_5297.MOV" data-right-video="video/IMG_5303.MOV" aria-pressed="false" aria-controls="hero-task-stage">
+          <span class="task-choice-number">02</span><span class="task-choice-name">Sequential Pick</span><span class="task-choice-detail">Two demonstrations <span aria-hidden="true">↗</span></span>
+        </button>
+        <button type="button" class="task-choice task-choice-3" data-hero-task="3" data-title="Object Return" data-left-video="video/IMG_5306.MOV" data-right-video="video/IMG_5307.MOV" aria-pressed="false" aria-controls="hero-task-stage">
+          <span class="task-choice-number">03</span><span class="task-choice-name">Object Return</span><span class="task-choice-detail">Two demonstrations <span aria-hidden="true">↗</span></span>
+        </button>
+        <button type="button" class="task-choice task-choice-4" data-hero-task="4" data-title="Color Sorting" data-left-video="video/IMG_5308.MOV" data-right-video="video/IMG_5318.MOV" aria-pressed="false" aria-controls="hero-task-stage">
+          <span class="task-choice-number">04</span><span class="task-choice-name">Color Sorting</span><span class="task-choice-detail">Two demonstrations <span aria-hidden="true">↗</span></span>
+        </button>
+          <div class="task-stage" id="hero-task-stage" role="region" aria-labelledby="hero-task-title">
+            <div class="task-stage-heading"><h2 id="hero-task-title" aria-live="polite">Match and Pick</h2><span>REAL ROBOT · D²-VLA</span></div>
+            <div class="hero-video-pair">
+              <figure>
+                <div class="media-slot video-slot"><video id="hero-video-left" controls playsinline preload="metadata" aria-label="Match and Pick, demonstration 1" src="video/IMG_5290.MOV"></video></div>
+                <figcaption><span class="demo-dot"></span>Demonstration 01 <a id="hero-download-left" href="video/IMG_5290.MOV" target="_blank" rel="noopener">Open video ↗</a></figcaption>
+              </figure>
+              <figure>
+                <div class="media-slot video-slot"><video id="hero-video-right" controls playsinline preload="metadata" aria-label="Match and Pick, demonstration 2" src="video/IMG_5296.MOV"></video></div>
+                <figcaption><span class="demo-dot"></span>Demonstration 02 <a id="hero-download-right" href="video/IMG_5296.MOV" target="_blank" rel="noopener">Open video ↗</a></figcaption>
+              </figure>
+            </div>
           </div>
-          <figcaption>Real-world demonstration 1</figcaption>
-        </figure>
-        <figure class="paper-figure">
-          <div class="media-slot video-slot">
-            <video controls playsinline preload="metadata" aria-label="Real-world demonstration 2" src="video/IMG_5296.MOV">
-              <a href="video/IMG_5296.MOV">Download demonstration 2</a>
-            </video>
-          </div>
-          <figcaption>Real-world demonstration 2</figcaption>
-        </figure>
-      </div>
+        </div>
+      </section>
       <p class="availability">Source code and model weights are not publicly available at this stage.</p>
     </section>
     <div class="container intro-block">
