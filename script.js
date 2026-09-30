@@ -40,7 +40,7 @@ function allowedUrl(value) {
 if (allowedUrl(config.paperUrl)) {
   const link = document.getElementById("paper-link");
   link.href = config.paperUrl;
-  link.textContent = "Paper ↗";
+  link.textContent = "PDF ↗";
 }
 if (allowedUrl(config.projectUrl)) {
   const link = document.getElementById("project-link");

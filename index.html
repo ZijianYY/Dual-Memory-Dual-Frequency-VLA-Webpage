@@ -24,7 +24,7 @@
       <h1 id="hero-title">D<sup>2</sup>-VLA</h1>
       <p class="paper-title">Dual-Memory Dual-Frequency<br class="desktop-break"> Vision-Language-Action Model for<br class="desktop-break"> Long Dynamic Manipulation</p>
       <p class="hero-summary">Remember cues that leave the scene.<br>Respond to objects that keep moving.</p>
-      <div class="hero-actions"><a class="button primary" id="paper-link" href="#abstract">Read abstract <span aria-hidden="true">↗</span></a><a class="button" href="#real-world">Demonstrations</a><a class="button" href="#citation">BibTeX</a><a class="button" id="project-link" hidden>Project repository</a></div>
+      <div class="hero-actions"><a class="button primary" id="paper-link" href="https://arxiv.org/abs/2609.34792" target="_blank" rel="noopener noreferrer">PDF ↗</a><a class="button" id="project-link" href="https://github.com/ZijianYY/Dual-Memory-Dual-Frequency-VLA" target="_blank" rel="noopener noreferrer">Code ↗</a><a class="button" href="#real-world">Demonstrations</a><a class="button" href="#citation">Citation</a></div>
       <div class="authors" aria-label="Authors">
         <span>Zijian Ye<sup>1,*</sup></span><span>Chengqi Wei<sup>2,*</sup></span><span>Wei Huang<sup>1,†</sup></span><span>Anlin Zheng<sup>1,†</sup></span><span>Chunyu Zou<sup>1</sup></span><span>Liangyu Wu<sup>2</sup></span><span>Zikang Zhao<sup>2</sup></span><span>Zhenjie Peng<sup>2</sup></span><span>Yushuo Yang<sup>2</sup></span><span>Shuman Zhao<sup>1</sup></span><span>Zhongrui Wang<sup>2,✉</sup></span><span>Xiaojuan Qi<sup>1,✉</sup></span>
       </div>
@@ -119,16 +119,20 @@
   <details><summary>Update schedule and KV-read efficiency</summary><div class="table-wrap" role="region" aria-label="Dual-frequency update schedule ablation" tabindex="0"><table><caption class="sr-only">Dual-frequency update schedule ablation</caption><thead><tr><th scope="col">Configuration</th><th scope="col">VLM period</th><th scope="col">Replanning period</th><th scope="col">SR</th></tr></thead><tbody><tr><td>High-rate pathway disabled</td><td>—</td><td>—</td><td>16.1%</td></tr><tr><td>One intermediate adapter update</td><td>50 steps</td><td>25 steps</td><td>27.6%</td></tr><tr><td>Two intermediate adapter updates</td><td>75 steps</td><td>25 steps</td><td>29.3%</td></tr></tbody></table></div><p class="small-note">The enabled settings keep the same action replanning interval. They vary the VLM refresh interval and the number of intermediate updates.</p><p class="section-intro">The main configuration retains 70% of historical visual tokens in each read view, with separate attention statistics for each consumer. Current blocks, instruction tokens, and the complete stored KV blocks are preserved.</p><div class="table-wrap" role="region" aria-label="LIBERO-Long accuracy and efficiency comparison" tabindex="0"><table><caption class="sr-only">LIBERO-Long accuracy and efficiency comparison</caption><thead><tr><th scope="col">LIBERO-Long variant</th><th scope="col">SR</th><th scope="col">Latency</th><th scope="col">Peak GPU memory</th></tr></thead><tbody><tr><td>π₀.₅</td><td>92.4%</td><td>141.03 ms</td><td>9,157 MiB</td></tr><tr><td>Full KV cache</td><td>94.5%</td><td>184.69 ms</td><td>10,738 MiB</td></tr><tr class="ours"><td>D²-VLA</td><td>97.5%</td><td>174.92 ms</td><td>9,654 MiB</td></tr></tbody></table></div><p class="small-note">Selective reads reduce latency and peak memory relative to full historical KV reads. The single-observation baseline remains faster and uses less memory. Sources: Table 3 and Appendix D.</p></details>
 </section></div>
 <section class="section container" id="citation">
-  <div class="section-heading"><p class="eyebrow">07 / CITATION</p><h2>Cite D²-VLA</h2><p class="section-intro">If this work is useful for your research, please consider citing the manuscript.</p></div>
-  <div class="citation-panel"><div class="citation-top"><span>BIBTEX</span><button class="copy-button" id="copy-citation" type="button">Copy BibTeX</button></div><pre id="bibtex">@misc{ye_d2vla,
-  title  = {{D2-VLA}: Dual-Memory Dual-Frequency
-            Vision-Language-Action Model for Long Dynamic Manipulation},
-  author = {Ye, Zijian and Wei, Chengqi and Huang, Wei and Zheng, Anlin and
-            Zou, Chunyu and Wu, Liangyu and Zhao, Zikang and Peng, Zhenjie and
-            Yang, Yushuo and Zhao, Shuman and Wang, Zhongrui and Qi, Xiaojuan},
-  note   = {Manuscript}
+  <div class="section-heading"><p class="eyebrow">07 / CITATION</p><h2>Cite D²-VLA</h2><p class="section-intro">If this work is useful for your research, please consider citing our paper.</p></div>
+  <div class="citation-panel"><div class="citation-top"><span>BIBTEX</span><button class="copy-button" id="copy-citation" type="button">Copy BibTeX</button></div><pre id="bibtex">@misc{ye2026d2vla,
+  title = {{D$^2$-VLA}: Dual-Memory Dual-Frequency Vision-Language-Action Model For Long Dynamic Manipulation},
+  author = {Zijian Ye and Chengqi Wei and Wei Huang and Anlin Zheng and
+            Chunyu Zou and Liangyu Wu and Zikang Zhao and Zhenjie Peng and
+            Yushuo Yang and Shuman Zhao and Zhongrui Wang and Xiaojuan Qi},
+  year = {2026},
+  eprint = {2609.34792},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.CV},
+  doi = {10.48550/arXiv.2609.34792},
+  url = {https://arxiv.org/abs/2609.34792}
 }</pre><div id="copy-status" class="status-message" role="status" aria-live="polite"></div></div>
-  <p class="citation-note">Publication details will be added when available.</p>
+  <p class="citation-note"><a href="https://arxiv.org/abs/2609.34792" target="_blank" rel="noopener noreferrer">arXiv:2609.34792 ↗</a> · <a href="https://doi.org/10.48550/arXiv.2609.34792" target="_blank" rel="noopener noreferrer">DOI ↗</a> · <a href="citation.bib" download>Download BibTeX</a></p>
   <p class="contact">Research inquiries: <a href="mailto:wangzr@sustech.edu.cn">Zhongrui Wang</a> · <a href="mailto:xjqi@eee.hku.hk">Xiaojuan Qi</a></p>
 </section>
 
