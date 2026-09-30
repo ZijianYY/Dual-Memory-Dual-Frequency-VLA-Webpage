@@ -48,18 +48,6 @@ if (allowedUrl(config.projectUrl)) {
   link.hidden = false;
 }
 
-document.querySelectorAll("[data-task-group]").forEach(button => {
-  button.addEventListener("click", () => {
-    const group = button.dataset.taskGroup;
-    document.querySelectorAll("[data-task-group]").forEach(item => item.setAttribute("aria-pressed", String(item === button)));
-    ["dynamic", "static"].forEach(name => {
-      const panel = document.getElementById(`${name}-tasks`);
-      panel.hidden = name !== group;
-      if (panel.hidden) panel.querySelectorAll("video").forEach(video => video.pause());
-    });
-  });
-});
-
 const copyButton = document.getElementById("copy-citation");
 copyButton?.addEventListener("click", async () => {
   const source = document.getElementById("bibtex");
